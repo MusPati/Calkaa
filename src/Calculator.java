@@ -17,10 +17,14 @@ public class Calculator {
         if ((Roman.isValidRoman(first) && Roman.isValidRoman(second))) {
             int transformedFirst = Roman.toArab(first);
             int transformedSecond = Roman.toArab(second);
+        if (transformedFirst <= transformedSecond) { throw  new RuntimeException("нуль или отрицательный результат для римских цифр не поддеживается"); }
             System.out.println("ОТВЕТ " + Roman.toRoman(Integer.parseInt(Calculator.Operation(transformedFirst, transformedSecond, operator))));
 
 
-        } else if (Calculator.isValidArab(first) && Calculator.isValidArab(second)){
+        }
+
+
+     else if (Calculator.isValidArab(first) && Calculator.isValidArab(second)) {
             int transformedFirst = Integer.parseInt(first);
             int transformedSecond = Integer.parseInt(second);
             System.out.println("ОТВЕТ " + Calculator.Operation(transformedFirst, transformedSecond, operator));
@@ -38,7 +42,7 @@ public class Calculator {
         }
         else if (operator.equals("-")) {
             operator = "-";
-            result = String.valueOf(transformedFirst - transformedSecond); }
+            result = String.valueOf(transformedFirst - transformedSecond);}
 
         else if (operator.equals("*")) {
             operator = "*";
