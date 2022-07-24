@@ -10,6 +10,12 @@ public class Calculator {
 
         boolean isRoman = false;
         String[] operands = input.split(" ");
+        if (operands.length > 3) {
+            throw new RuntimeException("Формат математической операции не удовлетворяет заданию - два операнда и один оператор");
+        }
+        if (operands.length < 3) {
+            throw new RuntimeException("Строка не является математической операцией");
+        }
         String first = operands[0];
         String second = operands[2];
         String operator = String.valueOf(operands[1]);
@@ -17,10 +23,8 @@ public class Calculator {
         if ((Roman.isValidRoman(first) && Roman.isValidRoman(second))) {
             int transformedFirst = Roman.toArab(first);
             int transformedSecond = Roman.toArab(second);
-        if (transformedFirst <= transformedSecond) { throw  new RuntimeException("нуль или отрицательный результат для римских цифр не поддеживается"); }
+        if ((transformedFirst <= transformedSecond) && (operator.equals("-"))) { throw  new RuntimeException("нуль или отрицательный результат для римских цифр не поддеживается"); }
             System.out.println("ОТВЕТ " + Roman.toRoman(Integer.parseInt(Calculator.Operation(transformedFirst, transformedSecond, operator))));
-
-
         }
 
 
